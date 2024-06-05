@@ -1,0 +1,172 @@
+#container2{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+#container2 .dropdown {
+  flex-grow: 1;
+  padding: 24px;
+}
+
+.dropdown{
+  flex: 1;
+  min-width: 160px;
+}
+
+.dropdown label{
+  margin-right: 5px;
+}
+
+.dropdown select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.table-container{
+  width: 97%;
+  
+  overflow-x:auto;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 1500px;
+  margin: 20px auto;
+  border: 2px solid #ebebeb;
+  font-size:14px;
+}
+
+th,td {
+  border: 1px solid #ddd;
+  text-align:left;
+  padding: 12px 15px;
+}
+
+th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+tr:hover {
+  background-color: #eef;
+}
+
+
+#button{
+  display: block;
+  width: 160px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 35px 23px 30px;
+}
+
+
+td input [type = "checkbox"] {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.highlight {
+  background-color: #eef;
+}
+
+
+
+
+/* 
+#container2{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+#container2 .dropdown {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.dropdown{
+  flex: 1;
+  min-width: 160px;
+}
+
+.dropdown label{
+  margin-right: 5px;
+}
+
+.dropdown select{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.table-container{
+  width: 98%;
+  overflow-x:auto;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 1500px;
+  margin: 20px auto;
+  border: 2px solid #ebebeb;
+  font-size:14px;
+}
+
+th,td {
+  border: 1px solid #ddd;
+  text-align:left;
+  padding: 12px 15px;
+}
+
+th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+tr:hover {
+  background-color: #eef;
+}
+
+
+#button{
+  display: block;
+  width: 130px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 40px 45px 20px auto;
+}
+
+
+td input [type = "checkbox"] {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+} */

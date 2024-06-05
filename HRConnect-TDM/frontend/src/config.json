@@ -1,0 +1,41 @@
+{
+    "data":[
+        
+            {
+                "personNumber": "1",
+                "environment":"Dev3",
+                "businessUnit":"California",
+                "assignmentStatus":"Status 1",
+                "collectiveAgreementName":"Agreement 1"
+            },
+            {
+                "personNumber": "2",
+                "environment":"Dev8",
+                "businessUnit":"Colorado",
+                "assignmentStatus":"Status 2",
+                "collectiveAgreementName":"Agreement 1"
+            },
+            {
+                "personNumber": "3",
+                "environment":"Dev9",
+                "businessUnit":"California",
+                "assignmentStatus":"Status 3",
+                "collectiveAgreementName":"Agreement 2"
+            },
+            {
+                "personNumber": "4",
+                "environment":"Dev11",
+                "businessUnit":"Hawaii",
+                "assignmentStatus":"Status 1",
+                "collectiveAgreementName":"Agreement 3"
+            },
+            {
+                "personNumber": "5",
+                "environment":"Dev3",
+                "businessUnit":"Hawaii",
+                "assignmentStatus":"Status 2",
+                "collectiveAgreementName":"Agreement 3"
+            }
+        
+    ]
+}
