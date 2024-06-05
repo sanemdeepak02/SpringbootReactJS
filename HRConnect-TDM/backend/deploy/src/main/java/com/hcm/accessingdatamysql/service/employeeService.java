@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import javax.annotation.PostConstruct;
+import java.until.*;
 
 import com.hcm.accessingdatamysql.ThreadLocalEmployeeHolder;
 
@@ -31,11 +33,20 @@ import com.hcm.accessingdatamysql.ThreadLocalEmployeeHolder;
 // @Transactional(propagation = Propagation.REQUIRES_NEW) 
 // @Transactional(isolation = Isolation.SERIALIZABLE) 
 @Service
-public class employeeService{
+public class employeeService {
 
   @Autowired
   private employeeRepository empRepo;
 
+  private Set<String> lockedRows;
+
+  private final Object lock = new Object();
+
+  @PostConstruct
+  public void init() {
+    lock = new HashSet<>();
+  }
+    
   @SuppressWarnings("null")
   public employee saveEmpInfo(employee empSave) {
     return empRepo.save(empSave);
@@ -72,7 +83,7 @@ public class employeeService{
   // @Transactional(isolation = Isolation.ISOLATION_SERIALIZABLE)
   // @Transactional(propagation = Propagation.REQUIRES_NEW)
   // @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
-  public synchronized  List<employee> transToGetBUbyEmp(String tcName, String tcStatus, String dataresrveBy, Integer envid,
+  public List<employee> transToGetBUbyEmp(String tcName, String tcStatus, String dataresrveBy, Integer envid,
       String bUnitValue, String reservedFlag) {
 
 
@@ -92,7 +103,9 @@ public class employeeService{
     // return emp;
 
     // Working Code..
-    if (reservedFlag == "yes") {
+    
+      String key = "" + envid + bUnitValue;
+      waitForUntilAttempts(key, 1000, 5);
       List<employee> emp = empRepo.getActEmpByBU(envid, bUnitValue);
 
       // ThreadLocalEmployeeHolder.setEmployee(emp);
@@ -118,14 +131,10 @@ public class employeeService{
       }
       System.out.print("Thread Name" + " ----------- " + Thread.currentThread().getName() +"Reserving (getEmpBUnit)data for Test name:.. " + tcName + " ----------- " + bUnitValue + " ----------- " + envid + " ----------- ");
       empRepo.save(emp.get(0));
+      synchronized (lock) {
+        lockedRows.remove(key);
+      }
       return emp;
-    } else {
-      System.out.print("Not Reserving (getEmpBUnit) data for the Test name:.. " + tcName );
-      //System.out.print("This is thread name..... " + Thread.currentThread().getName() + " ----------- " + tcName );
-      List<employee> emp = empRepo.getActEmpByBuNR(envid, bUnitValue);
-      return emp;
-    }
-
   }
 
   // @SuppressWarnings("null")
@@ -246,6 +255,17 @@ public class employeeService{
     return emp;
   }
 
+  private void waitForUntilAttempts(String key, long millis, int maxAttempts) {
+    maxAttempts = Math.abs(maxAttempts);
+    int attempt = 0;
+    while(lockedRows.contain(key) && mattempt < maxAttempts) {
+    try {
+    Thread.sleep(millis);
+      } catch(Exception e) {
+    }
+      attempt++;
+    }
+  }
   // public List<employees> getEmployeeByBU(String TCName, String tcsStatus,
   // String ReservedBy, String envName, String asignStatus, String buName );
 
